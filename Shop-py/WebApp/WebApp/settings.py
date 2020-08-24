@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'products',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/img'),
 )
+
+#MEDIA_ROOT = '/mnt/c/Users/91894/desktop/SHOP-PY/Shop-py/WebApp/static/'
+#MEDIA_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")

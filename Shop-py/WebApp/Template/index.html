@@ -1,14 +1,22 @@
 {% extends "base.html" %}
 {% load static %}
 {% block page_content %}
-<h1>Products</h1>
+
+<div class="container text-center">
+	<h1>Products</h1>
+</div>
+
 <div class="row">
 {% for product in products %}
     <div class="col-md-4">
         <div class="card mb-2">
-            <img class="card-img-top" src="{% static product.image %}">
-            <div class="card-body">
-                <p class="card-text">{{ product.description }}</p>
+            <img class="card-img-top" src="{% static product.Image %}">
+            <div class="card-body text-center">
+                <div class="d-flex p-2"><h2>{{ product.Name }}</h2></div>
+                <div class="d-flex p-2">Cost: {{ product.Quantity }}</div>
+            </div>
+            <div class="card-body text-center bg-light">
+                <p class="card-text">{{ product.Description }}</p>
             </div>
         </div>
     </div>
