@@ -1,8 +1,9 @@
 import os
 import datetime
 from reportlab.platypus import SimpleDocTemplate
-from reportlab.platypus import Paragraph, Spacer, Table, image
+from reportlab.platypus import Paragraph, Spacer, Table
 from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet
 
 
 
@@ -20,12 +21,12 @@ def create_dict(path):
 
 def generate_report(path):
 
-	data_report = create_dict(path)
+    data_report = create_dict(path)
 
-	date = datetime.datetime.now()
+    date = datetime.datetime.now()
 
 
-	path_to_report = os.path.expanduser('~') + "/supplier-data/report.pdf"
+    path_to_report = "/mnt/c/Users/91894/Desktop/SHOP-PY/supplier-data/report.pdf"
     report = SimpleDocTemplate(path_to_report)
     styles = getSampleStyleSheet()
 
@@ -34,7 +35,7 @@ def generate_report(path):
 
 
     table_data = []
-    for key,value in data_report:
+    for key,value in data_report.items():
     	table_data.append([key,value])
     table_style = [('GRID', (0,0), (-1,-1), 1, colors.black)]
     report_table = Table(data = table_data, style = table_style, hAlign = "CENTER")

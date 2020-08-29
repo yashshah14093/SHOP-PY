@@ -1,3 +1,4 @@
+from django.views.generic import ListView
 from django.shortcuts import render
 from products.models import Product
 from rest_framework.decorators import api_view
@@ -21,10 +22,15 @@ def show_list(request):
         return Response(serializers.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
-def prod_index(request):
-    products = Product.objects.all()
-    context = {
-        'products': products
-    }
-    return render(request, 'index.html', context)
+#def prod_index(request):
+#    products = Product.objects.all()
+#    context = {
+#        'products': products
+#    }
+#    return render(request, 'index.html', context)
 
+
+
+class HomePageView(ListView):
+    model = Product
+    template_name = 'index.html'

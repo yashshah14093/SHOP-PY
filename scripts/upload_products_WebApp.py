@@ -1,31 +1,29 @@
 #!/usr/bin/env python3
 
+from upload_objects import upload_object
 import os
-import requests
 
-path = os.path.expanduser('~') + "/supplier-data/descriptions/"
-url = "http://35.192.136.11/fruits/"
+def upload_products(dict_names):
 
+    path = "/mnt/c/Users/91894/Desktop/SHOP-PY/supplier-data/descriptions/"
 
-for file in os.listdir(path):
+    for file in os.listdir(path):
     
-    f,e = file.split(".")
-    obj = {"image_name":f+".jpeg"}
+        file_name,extension = file.split(".")
     
-    with open(path+file) as file_to_read:
-        input = file_to_read.readline
-        name = input()
+        if(file_name in dict_names):
+    
+            with open(path+file) as file_to_read:
+                input = file_to_read.readline
+                name = input()
 
-        weight_string = input()
-        weight_list = weight_string.split(" ")
-        # print(weight_list)
-        weight = int(weight_list[0])
+                weight_string = input()
+                weight_list = weight_string.split(" ")
+                quantity = int(weight_list[0])
+                
+                image = "img/"+file_name+".jpeg"
 
-        description = input()
+                description = input()
+                
+                upload_object(name,quantity,image,description)
 
-        obj["name"] = name
-        obj["weight"] = weight
-        obj["description"] = description
-
-        response = requests.post(url,json=obj)
-        # print(response.status_code,response.ok)
